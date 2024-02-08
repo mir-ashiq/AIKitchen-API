@@ -34,6 +34,8 @@ An unofficial Python API designed for seamless interaction with Google AI Kitche
 - Responsible AI Practices: Adhere to ethical AI principles and practices when using AI-generated content.
 - Security Best Practices: Implement robust security measures, considering the sensitivity of information stored.
 
+**Note:** For optimal usage, it is recommended to keep Two-Factor Authentication (2FA) off for the Google AI Kitchen account associated with this API to avoid login issues.
+
 ## Further Enhancements
 
 - **API Documentation:** Develop extensive API documentation to guide users effectively.
@@ -53,7 +55,7 @@ pip install AIKitchen-API
 from AIKitchen_API.AIKitchen import Login, Music, Image
 
 # Login
-login = Login()
+login = Login(email="your_email@example.com", password="your_password")
 token = login.token
 
 #Music Generation
@@ -67,14 +69,11 @@ if isinstance(tracks, list):
 #Image Generation 
 image = Image()
 
-input = 'Silver coin with an smiling cat, words " 5 catnips" "handmade"'
+input = 'Silver coin with a smiling cat, words "5 catnips" "handmade"'
 images = image.get_image(input, 3, token)
 
 if isinstance(images, list):
     image.b64toImg(images, input)
-
-
 ```
 
 For more details, examples, and contribution guidelines, please refer to the [GitHub repository](https://github.com/mir-ashiq/AIKitchen-API).
-```
