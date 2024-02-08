@@ -16,16 +16,16 @@ dotenv_file = dotenv.find_dotenv()
 dotenv.load_dotenv(dotenv_file)
 
 class Login:
-    url = 'https://aitestkitchen.withgoogle.com/experiments/music-lm'
-    def __init__(self):
-        self.email = os.environ["EMAIL"]
-        self.password = os.environ["PASSWORD"]
-        if os.environ["TOKEN"] == "":
+    def __init__(self, email=None, password=None):
+        self.url = 'https://aitestkitchen.withgoogle.com/experiments/music-lm'
+        self.email = email or os.environ.get("EMAIL")
+        self.password = password or os.environ.get("PASSWORD")
+        if os.environ.get("TOKEN") == "":
             self.token = self.get_token()
         elif self.token_refresh():
             self.token = self.get_token()
         else:
-            self.token = os.environ["TOKEN"]
+            self.token = os.environ.get("TOKEN")
     def save_cookies(self, driver, filename):
         pickle.dump(driver.get_cookies(), open(filename, 'wb'))
         print("Cookies saved successfully")
